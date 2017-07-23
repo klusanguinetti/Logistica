@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  Logistica                                    */
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     23/07/2017 07:31:03 p.m.                     */
+/* Created on:     23/07/2017 08:53:16 p.m.                     */
 /*==============================================================*/
 
 
@@ -106,6 +106,7 @@ go
 create table TipoUsuario (
    TipoUsuarioId        numeric(10)          identity,
    Descripcion          nvarchar(200)        null,
+   IsDefault            nvarchar(1)          null,
    constraint PK_TIPOUSUARIO primary key (TipoUsuarioId)
 )
 go
