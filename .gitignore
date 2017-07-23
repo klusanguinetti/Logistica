@@ -3,3 +3,27 @@
 ################################################################################
 
 /Source/Logistica/bin/Debug
+/Source/.vs
+/Source/Logistica/obj/Debug
+/Source/Logistica/packages.config
+/Source/Logistica/Logistica.csproj.user
+/Source/Logistica.Business/bin/Debug
+/Source/Logistica.Business/obj/Debug
+/Source/Logistica.Configuration/bin/Debug
+/Source/Logistica.Configuration/obj/Debug
+/Source/Logistica.Configuration/Logistica.Configuration.csproj.user
+/Source/Logistica.DataAccess/bin/Debug
+/Source/Logistica.DataAccess/obj/Debug
+*.user
+/Source/Logistica.Entity/bin/Debug
+/Source/Logistica.IBusiness/bin/Debug
+/Source/Logistica.IBusiness/obj/Debug
+/Source/Logistica.IDataAccess/bin/Debug
+/Source/Logistica.IDataAccess/obj/Debug
+/Source/Logistica.Testing/bin/Debug
+/Source/Logistica.Testing/obj/Debug
+/Source/Logistica.ViewModel/bin/Debug
+/Source/Logistica.ViewModel/obj/Debug
+/Source/Logistica.Web/bin
+/Source/Logistica.Web/obj
+/Source/packages

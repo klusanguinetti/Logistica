@@ -1,0 +1,96 @@
+﻿<div ng-controller="administracionController as vm" class="container-fluid title-consulta">
+    <div class="contenedor-formu">
+        <form ng-submit="vm.buscarCliente()" class="consulta-suscription">
+            <input type="text" class="" ng-model="vm.datoConsulta" input-noborder name="name" value="" placeholder="Ingrese documento, Cuit o NUP" />
+            <span class="lupa"><img ng-click="vm.buscarCliente()" src="~/Content/icon-lupa.png" /></span>
+            <a class="clear" ng-click="vm.cleanAll()" ng-if="vm.allClientes.length > 0">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </form>
+    </div>
+    <div class="resultados-suscripcion">
+        <div class="container-consulta">
+            <table>
+                <tr ng-repeat="item in vm.allClientes">
+                    <td>
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab" target="_self" ng-click="vm.submitRequest(item)">
+                            <strong><span class="name-consulta">{{item.Apellido}}, {{item.Nombre}}</span> | <span class="dni-consulta">{{item.TipoDocumento}}: {{item.NumeroDocumento}}</span> | <span class="nup-consulta">NUP :{{item.Nup}}</span></strong>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-if="vm.cliente != null">
+            <hr class="full-hr" />
+            <div role="tabpanel" class="tab-pane" id="home">
+                <h2><strong>Adhesión manual a PDC</strong></h2>
+                <p class="sub">Seleccione un combo de cuentas a adherir</p>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="vm.moneda" name="moneda"
+                                ng-options="item.Codigo as item.Codigo for item in vm.monedaModel" ng-change="vm.getCuentasOperativas();" required>
+                            <option value="" class="select-placeholder">Moneda</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="vm.cuentaOperativa" name="cuentaOperativa"
+                                ng-options="item as item.Descripcion for item in vm.cuentasOperativas" ng-change="vm.getCuentasTitulo();" required>
+                            <option value="" class="select-placeholder">Cuenta Operativa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="vm.cuentaTitulo" name="cuentaTitulo"
+                                ng-options="item.Codigo as item.Descripcion for item in vm.cuentasTitulo" required="">
+                            <option value="" class="select-placeholder">Cuenta Título</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="col-md-5 moneda-textarea">
+                    <h4><strong>Motivo de adhesión</strong></h4>
+                    <br />
+                    <textarea ng-model="vm.Motivo" class="form-control" cols="4" rows="8"></textarea>
+                    <button class="btn btn-excel pull-right"><i class="fa fa-file-o" ng-show="false"></i> Adjuntar archivo</button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                    <div class="col-md-1 no-left">
+                        <button class="btn btn-custom" data-toggle="modal" data-target="#adherir" ng-disabled="vm.deshabilitarBtnAdherir();" ng-click="showFirstModal=true">Adherir</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-cancel" ng-click="vm.cancelarAdhesion()">Cancelar</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <br />
+            </div>
+
+        </div>
+            <div class="modal fade" id="adherir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content modal-adhesion">
+                        <div class="modal-header modal-custom-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title text-center" id="myModalLabel"><strong>Adhesión manual</strong></h4>
+                            <p>Se efectuará la adhesion a PDC de</p>
+                            <br />
+                            <p><strong>Moneda: {{vm.moneda}} | Cta. ATIT: {{vm.cuentaTitulo}} | {{vm.cuentaOperativa.Descripcion}}  </strong></p><br />
+                            <br />
+                            <p>¿Confirma la adhesión?</p>
+                        </div>
+                        <div class="text-center">
+                            <br />
+                            <button class="btn btn-custom" ng-click="vm.setAltaManual();" data-dismiss="modal">Si, adherir</button>
+                            <button class="btn btn-cancel" data-dismiss="modal">Cancelar</button>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

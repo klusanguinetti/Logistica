@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA7C9D26-9FC4-4198-8910-B499053BD5D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Logistica.Business</RootNamespace>
+    <AssemblyName>Logistica.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FillViewModel.cs" />
+    <Compile Include="LoginBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logistica.Entity\Logistica.Entity.csproj">
+      <Project>{6C261B47-E8FB-4598-96A8-2342A9039638}</Project>
+      <Name>Logistica.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logistica.IBusiness\Logistica.IBusiness.csproj">
+      <Project>{f1f5732a-b21a-40e3-a6b7-4c9cee4b9ab2}</Project>
+      <Name>Logistica.IBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logistica.IDataAccess\Logistica.IDataAccess.csproj">
+      <Project>{ab508b96-0ca5-4338-81ca-a66b43653b1d}</Project>
+      <Name>Logistica.IDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logistica.ViewModel\Logistica.ViewModel.csproj">
+      <Project>{76d899e1-9461-49fd-9356-699ea7ac98c8}</Project>
+      <Name>Logistica.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logistica\Logistica.csproj">
+      <Project>{09b62602-d44f-4f98-b435-6d117a27b851}</Project>
+      <Name>Logistica</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

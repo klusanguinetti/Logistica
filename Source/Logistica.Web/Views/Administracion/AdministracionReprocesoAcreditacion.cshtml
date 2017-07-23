@@ -1,0 +1,152 @@
+﻿@using Logistica.Web.Security
+@{
+    string modulo = "RPACREDITACION";
+    if (SecurityView.TieneAcceso(modulo))
+    {
+        <div ng-controller="administracionReprocesoAcreditacionController as vm" class="container-fluid title-consulta">
+            <div class="resultados-suscripcion">
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <h2><strong>Reproceso de acreditación</strong></h2>
+                        <p class="sub">Fecha de último cierre: <strong>{{vm.fechaUltimoCierre}}</strong></p>
+                        <br />
+                        <br />
+
+
+                        <div class="clearfix"></div>
+                        <div class="col-md-12">
+                            <form name ="form1">
+                                <div class="form-group col-md-2 no-left">
+                                    <label class="fecha-operacion-label">Fecha de reproceso</label>
+                                    <md-datepicker ng-model="vm.fechaReproceso"
+                                                   flex="100"
+                                                   md-placeholder="DD/MM/YYYY"
+                                                   is-open="dateFromOpened"
+                                                   ng-required="true">
+                                    </md-datepicker>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="fecha-operacion-label">Moneda</label>
+                                    <select class="form-control" ng-model="vm.moneda"
+                                            ng-options="item.Codigo as item.Codigo for item in vm.monedaModel"
+                                            ng-required="true">
+                                        <option value="" class="select-placeholder">Seleccionar Moneda</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="fecha-operacion-label">Reproceso de clientes por</label>
+                                    <select id="codigoProducto" name="codigoProducto" class="form-control"
+                                            ng-model="vm.productoSelected"
+                                            ng-options="item.IdProducto as item.Descripcion for item in vm.productos"
+                                            ng-required="true">
+                                        <option value="" class="select-placeholder">Seleccionar Producto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="submit" class="btn btn-custom" ng-disabled="form1.$invalid" ng-click="vm.consultaReprocesoAcreditacion()" style="margin-top: 24px;" value="Consultar">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="hr-custom" />
+            <br />
+            <form class="resultado-consulta">
+                <h5><strong>Resultado de consulta</strong></h5>
+                <br />
+                <div class="col-md-5 bg-gray">
+                    <input type="search" class="" /><span class="icon-search"><i class="fa fa-search"></i></span>
+                    <button class="btn btn-custom">Buscar</button>
+                </div>
+                <div class="col-md-1" style="float:right;padding-right: 130px;">
+                    <button class="btn btn-reprocesar" ng-click="vm.reprocesarAcreditacion()">Reproceso</button>
+                </div>
+                <br />
+                <br />
+                <div class="overflow-table">
+                    <table class="table table-responsive table-suscription table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="checkbox-custom">
+                                        <input id="check4" class="check" type="checkbox" value="option2" ng-model="vm.MotherOfChecks" ng-click="vm.checkAll()">
+                                        <label for="check4"></label>
+                                    </div>
+                                </th>
+                                <th>Producto</th>
+                                <th>Moneda</th>
+                                <th>Cuenta PDC</th>
+                                <th>D.U.</th>
+                                <th>Cliente</th>
+                                <th>Cta. Tit</th>
+                                <th>Tipo de cta. operativa</th>
+                                <th>Suc-Nro. de cta. operativa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in vm.reprocesoCierre">
+                                <td>
+                                    <div class="checkbox-custom">
+                                        <input id="check4" class="check" type="checkbox" value="option2" ng-click="vm.checkOne(vm.isChecked[$index])" ng-model="vm.isChecked[$index]">
+                                        <label for="check4"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{item.Producto}}
+                                </td>
+                                <td>
+                                    {{item.Moneda}}
+                                </td>
+                                <td>
+                                    {{item.IdCuentaPDC}}
+                                </td>
+                                <td>
+                                    {{item.DU}}
+                                </td>
+                                <td class="width-nombre">
+                                    {{item.Cliente}}
+                                </td>
+                                <td>
+                                    {{item.CuentaTitulos}}
+                                </td>
+                                <td>
+                                    {{item.TipoCtaOperativa}}
+                                </td>
+                                <td>
+                                    {{item.SucursalCtaOperativa}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>                                
+    }
+    else
+    {
+        <div class="col-xs-12 home" id="home">
+            <div class="col-md-4"></div>
+            <div class="col-lg-4 col-md-4">
+                <div>
+                    <div class="panel-heading">
+                        <a href="javascript:history.go(-1)" class="hovered-home">
+                            @*<div class="up-box">*@
+                            <div class="text-center">
+                                <img src="~/Content/icon-accesodenegado.png" alt="PDC" />
+                                <p>No tiene</p>
+                                @*</div>*@
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    }
+}

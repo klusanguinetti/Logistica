@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+	<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+		<class name="Logistica.Entity.Reserva, Logistica.Entity" table="Reserva" lazy="false"> 
+			<id name="Id" column="ReservaId" type="System.Int64" unsaved-value="0" >
+				<generator class="native" />
+			</id>
+			<property name="Desde" column="Desde" type="System.DateTime"  />
+			<property name="Fecha" column="Fecha" type="System.DateTime"  />
+			<property name="Hasta" column="Hasta" type="System.DateTime"  />
+			<many-to-one name="Producto" column="ProductoId" cascade="none" class="Logistica.Entity.Producto, Logistica.Entity" />
+			<many-to-one name="Usuario" column="UsuarioId" cascade="none" class="Logistica.Entity.Usuario, Logistica.Entity" />
+		</class>
+	</hibernate-mapping>
+<!--Importante: Asignar el not-null=true que corresponda.-->

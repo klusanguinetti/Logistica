@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+	<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+		<class name="Logistica.Entity.Menu, Logistica.Entity" table="Menu" lazy="false"> 
+			<id name="Id" column="MenuId" type="System.Int64" unsaved-value="0" >
+				<generator class="native" />
+			</id>
+			<property name="Icon" column="Icon" type="System.String" length="800" />
+			<property name="Nombre" column="Nombre" type="System.String" length="400" />
+      <property name="ParentId" column="ParentId" type="System.Int64" />
+			<many-to-one name="TipoUsuario" column="TipoUsuarioId" cascade="none" class="Logistica.Entity.TipoUsuario, Logistica.Entity" />
+			<property name="Url" column="Url" type="System.String" length="800" />
+		</class>
+	</hibernate-mapping>
+<!--Importante: Asignar el not-null=true que corresponda.-->
