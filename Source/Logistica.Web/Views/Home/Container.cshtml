@@ -30,7 +30,7 @@
             <nav class="navbar navbar-default navbar-santander" role="navigation" id="topmenu">
                 <ul class="nav navbar-nav pull-right menu-principal target-active">
                     <li ng-repeat="item in menuLevel">
-                        <a ng-click="vmMain.selectMenuItem(item)" ng-class="item.Selected ? item.Class : ''" ng-if="!item.Disabled">{{item.Description}}</a>
+                        <a ng-click="vmMain.selectMenuItem(item)"  ng-if="!item.Disabled">{{item.Nombre}}</a>
                         <a style="cursor: default;" ng-if="item.Disabled">{{item.Description}}</a>
                     </li>
                 </ul>

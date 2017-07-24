@@ -3,6 +3,8 @@
 
 
 
+using Logistica.ViewModel;
+
 namespace Logistica.Web
 {
     using System;
@@ -66,9 +68,7 @@ namespace Logistica.Web
             {
                 var userData = AuthenticationFormsClient.GetUsuario(Context.Request);
                 if (userData != null)
-                {
                     Context.User = new PDCPrincipal(userData);
-                }
             }
         }
 

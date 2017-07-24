@@ -94,7 +94,7 @@
             var currentParent = null;
 
             if (menuItem != null) {
-                currentParent = menuItem.Parent;
+                currentParent = menuItem.ParentId;
                 menuItem.Selected = true;
                 menuLevel = menuItem.Level;
             }

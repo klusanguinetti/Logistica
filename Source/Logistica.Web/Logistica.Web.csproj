@@ -150,7 +150,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DatosPersonalesApiController.cs" />
     <Compile Include="Controllers\AdministracionApiController.cs" />
+    <Compile Include="Controllers\DatosPersonalesController.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -165,7 +167,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthenticationFormsClient.cs" />
     <Compile Include="Security\SecurityView.cs" />
-    <Compile Include="Security\UsuarioApp.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,12 +240,14 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\app\appPoderDeCompra.js" />
     <Content Include="Scripts\app\common\common.js" />
+    <Content Include="Scripts\app\controllers\datosPersonalesController.js" />
     <Content Include="Scripts\app\controllers\administracionController.js" />
     <Content Include="Scripts\app\controllers\registracionController.js" />
     <Content Include="Scripts\app\controllers\loginController.js" />
     <Content Include="Scripts\app\controllers\publicController.js" />
     <Content Include="Scripts\app\controllers\mainController.js" />
     <Content Include="Scripts\app\directives\modalPopUp.js" />
+    <Content Include="Scripts\app\services\datosPersonalesService.js" />
     <Content Include="Scripts\app\services\commonService.js" />
     <Content Include="Scripts\app\services\administracionService.js" />
     <Content Include="Scripts\app\services\consultasService.js" />
@@ -302,10 +305,10 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Administracion\AdministracionAlta.cshtml" />
     <Content Include="Views\Login\Registracion.cshtml" />
+    <Content Include="Views\DatosPersonales\Modificacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DatosPersonales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

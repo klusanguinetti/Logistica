@@ -29,6 +29,10 @@ var configFunction = function ($routeProvider, $locationProvider) {
         {
             templateUrl: '/Home/LogOff'
         })
+        .when('/DatosPersonales',
+        {
+            templateUrl: '/DatosPersonales/Modificacion'
+        })
         .when('/ConsultaSuscripcion',
         {
             templateUrl: '/Consultas/ConsultaSuscripcion'

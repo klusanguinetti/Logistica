@@ -6,11 +6,7 @@ namespace Logistica.Entity
 	public class DatosPersona 
 	{
 		#region Atributos
-		public long Id
-		{
-			get;
-			set;
-		}
+		public long Id { get; set; }
 		public virtual String Apellido { get; set; }
  		public virtual String Ciudad { get; set; }
  		public virtual String CodigoPostal { get; set; }

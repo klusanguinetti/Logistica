@@ -14,5 +14,7 @@ namespace Logistica.IDataAccess
         List<Menu> GetMenu(Usuario usuario);
 
         bool ExisteUsuario(string mail);
+
+        DatosPersona ObtenerDatosPersonales(string mail);
     }
 }

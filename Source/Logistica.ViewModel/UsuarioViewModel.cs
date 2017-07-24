@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Logistica.ViewModel
 {
-    
     public class UsuarioViewModel
     {
 

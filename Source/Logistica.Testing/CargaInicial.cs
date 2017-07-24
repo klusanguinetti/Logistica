@@ -47,14 +47,14 @@ namespace Logistica.Testing
 
             #region borrado
 
-            dynamic dataAccess = DependencyFactory.Resolve<IBaseDA<DatosPersona>>();
+            dynamic dataAccess = DependencyFactory.Resolve<IBaseDA<Reserva>>();
             Detele(dataAccess);
             Detele(DependencyFactory.Resolve<IBaseDA<Menu>>());
-            Detele(DependencyFactory.Resolve<IBaseDA<Reserva>>());
+            
             Detele(DependencyFactory.Resolve<IBaseDA<Producto>>());
             Detele(DependencyFactory.Resolve<IBaseDA<TipoProducto>>());
-            Detele(DependencyFactory.Resolve<IBaseDA<TipoUsuario>>());
             Detele(DependencyFactory.Resolve<IBaseDA<Usuario>>());
+            Detele(DependencyFactory.Resolve<IBaseDA<TipoUsuario>>());
             #endregion
         }
         [Test]
@@ -65,6 +65,9 @@ namespace Logistica.Testing
             dataAccess.Save(tu);
             tu = new TipoUsuario { Descripcion = "Cliente", IsDefault = "S" };
             dataAccess.Save(tu);
+            Menu menu = new Menu { Nombre = "Datos Personales", TipoUsuario = tu, Url = "/DatosPersonales/Modificacion" };
+            dataAccess = DependencyFactory.Resolve<IBaseDA<Menu>>();
+            dataAccess.Save(menu);
         }
     }
 }

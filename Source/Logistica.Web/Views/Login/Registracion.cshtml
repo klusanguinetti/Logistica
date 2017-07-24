@@ -37,23 +37,27 @@
                 <p class="subtitle-errorlogin" ng-bind="vm.message"></p>
                 <form ng-submit="vm.submitLogin()">
                     <div class="divider-form">
-                        <img src="~/Content/icon-login.png" alt="Nombre"/>
+                        @*<img src="~/Content/icon-login.png" alt="Nombre"/>*@
+                        <i class="fa fa-user fa-lg" style="color:whitesmoke;"></i>
                         <input type="text" name="name" ng-model="vm.Registracion.Nombre" class="transparent" ng-disabled="vm.isLoading" placeholder="Nombre"/>
                     </div>
                     <div class="divider-form">
-                        <img src="~/Content/icon-login.png" alt="Apellido" />
+                        @*<img src="~/Content/icon-login.png" alt="Apellido" />*@
+                        <i class="fa fa-user fa-lg" style="color:whitesmoke;"></i>
                         <input type="text" name="name" ng-model="vm.Registracion.Apellido" class="transparent" ng-disabled="vm.isLoading" placeholder="Apellido" />
                     </div>
                     <div class="divider-form">
-                        <img src="~/Content/icon-login.png" alt="Usuario"/>
-                        <input type="text" name="name" ng-model="vm.Registracion.Mail" class="transparent" ng-disabled="vm.isLoading" placeholder="Usuario"/>
+                        @*<img src="~/Content/icon-login.png" alt="Usuario"/>*@
+                        <i class="fa fa-at fa-lg" style="color:whitesmoke;"></i>
+                        <input type="email" placeholder="Email" name="name" ng-model="vm.Registracion.Mail" class="transparent" ng-disabled="vm.isLoading" />
                     </div>
                     <div class="divider-form last-div">
-                        <img src="~/Content/icon-locker.png" alt="Password"/>
+                        @*<img src="~/Content/icon-locker.png" alt="Password"/>*@
+                        <i class="fa fa-key fa-lg" style="color:whitesmoke;"></i>
                         <input type="password" name="name" ng-model="vm.Registracion.Password" class="transparent" ng-disabled="vm.isLoading" placeholder="Contraseña"/>
                     </div>
                     <div>
-                        <button class="btn btn-custom btn-ingreso" type="submit" ng-disabled="vm.isLoading">Ingresar</button>
+                        <button class="btn btn-custom btn-ingreso" type="submit" ng-disabled="vm.isLoading">Registrarse</button>
                     </div>
                 </form>
             </div>

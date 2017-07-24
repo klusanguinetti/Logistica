@@ -45,14 +45,16 @@
             registracionService.registracion(vm.Registracion)
                  .then(function (response) {
                      var result = response.data;
-                     if (result)
+                     if (result) {
+                         alert('Es registro el usuario ' + vm.Registracion.Mail);
                          $window.location.href = '/Login/Login';
+                     }
                 else {
                     vm.loginError("Error al validar el usuario." + result);
                 }
                 //Resultado de la llamada.
                  }, function (error) {
-                     vm.Error = error.data.ExceptionMessage;
+                     vm.loginError(error.data.ExceptionMessage);
             });
 
         }
@@ -71,7 +73,7 @@
             wrap.addClass('error');
         };
         vm.loginError = function (errorMessage) {
-            vm.password = "";
+            vm.Registracion.Password = "";
             vm.Error(errorMessage);
             common.showError(errorMessage, null);
         };

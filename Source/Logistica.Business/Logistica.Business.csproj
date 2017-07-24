@@ -43,6 +43,7 @@
     <Compile Include="FillViewModel.cs" />
     <Compile Include="LoginBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logistica.Entity\Logistica.Entity.csproj">

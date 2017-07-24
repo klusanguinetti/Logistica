@@ -20,14 +20,20 @@
         public virtual Usuario LoginUser(string mail, string password)
         {
 
-            byte[] data = Convert.FromBase64String(password);
-            string decodedPassword = Encoding.UTF8.GetString(data);
+            //byte[] data = Convert.FromBase64String(password);
+            //string decodedPassword = Encoding.UTF8.GetString(data);
 
-            password = Common.Encrypt.EncryptToBase64String(decodedPassword);
+            password = Common.Encrypt.EncryptToBase64String(password);
             return Session.Query<Usuario>().FirstOrDefault(o => o.Password.Equals(password) && o.Mail.ToUpper().Equals(mail.ToUpper()));
         }
 
-       
+        public DatosPersona ObtenerDatosPersonales(string mail)
+        {
+            var user = Session.Query<Usuario>().FirstOrDefault(o => o.Mail.ToUpper().Equals(mail.ToUpper()));
+            if (user == null)
+                return null;
+            return user.DatosPersona;
+        }
 
         public virtual Usuario Registracion(Usuario usuario)
         {

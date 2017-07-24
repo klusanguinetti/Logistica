@@ -1,4 +1,8 @@
-﻿namespace Logistica.Web.Controllers
+﻿using Logistica.Common;
+using Logistica.IBusiness;
+using Logistica.UnityInject;
+
+namespace Logistica.Web.Controllers
 {
     using System;
     using System.Web.Http;
@@ -19,10 +23,12 @@
         {
             try
             {
-                
+
+                var business = DependencyFactory.Resolve<ILoginBusiness>();
+                var userView = business.LoginUser(userLogin);
                 //seguridadProxy.LoginUsuario(userLogin);
                 UsuarioApp user = new UsuarioApp { Mail = userLogin.Name, Ip = System.Web.HttpContext.Current.Request.UserHostAddress };
-
+                user.MenuUsuario = userView.Menu;
                 AuthenticationFormsClient.SetAuthenticationCookie(user.Mail, true, user);
                 return "OK";
             }

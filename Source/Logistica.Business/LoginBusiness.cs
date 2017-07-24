@@ -13,7 +13,7 @@ namespace Logistica.Business
 
     public class LoginBusiness : ILoginBusiness
     {
-        
+
         public virtual UsuarioViewModel LoginUser(LoginViewModel login)
         {
             var user = DependencyFactory.Resolve<IUsuarioDA>().LoginUser(login.Name, login.Password);
@@ -33,7 +33,7 @@ namespace Logistica.Business
             {
                 var user = userView.MapperClass<Usuario>(TypeMapper.IgnoreCaseSensitive);
                 var il = DependencyFactory.Resolve<IBaseDA<TipoUsuario>>().GetAll();
-                TipoUsuario tipoUsuario = il.FirstOrDefault(o => o.IsDefault!=null && o.IsDefault.Equals("S"));
+                TipoUsuario tipoUsuario = il.FirstOrDefault(o => o.IsDefault != null && o.IsDefault.Equals("S"));
                 if (tipoUsuario != null)
                 {
                     user.TipoUsuario = tipoUsuario;

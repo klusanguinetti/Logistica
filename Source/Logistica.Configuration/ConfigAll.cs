@@ -207,13 +207,14 @@ namespace Logistica.Configuration
                     new InterceptionBehavior<InterceptorBusiness>()
                 }
                 );
-            //DependencyFactory.RegisterType<IUsuarioBusiness, UsuarioBusiness>(
-            //    new InjectionMember[]
-            //    {
-            //        new Interceptor<VirtualMethodInterceptor>(),
-            //        new InterceptionBehavior<InterceptorBusiness>()
-            //    }
-            //    );
+
+            DependencyFactory.RegisterType<IUsuarioBusiness, UsuarioBusiness>(
+                new InjectionMember[]
+                {
+                    new Interceptor<VirtualMethodInterceptor>(),
+                    new InterceptionBehavior<InterceptorBusiness>()
+                }
+                );
             //DependencyFactory.RegisterType<ICommonBusiness, CommonBusiness>(
             //    new InjectionMember[]
             //    {
