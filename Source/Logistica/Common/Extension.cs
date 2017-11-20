@@ -1,33 +1,58 @@
-using System;
-using Newtonsoft.Json;
-
 namespace Logistica.Common
 {
-    public static class Extension
+    using Newtonsoft.Json;
+    using System.Configuration;
+    using System.IO;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
+    /// <summary>
+    /// Extension class JsonSerialization
+    /// </summary>
+    public static class JsonSerialization
     {
-        
         #region atributos
-        
+
         #endregion
 
         #region metodos
-        public static T DeserializarToJson<T>(this string jsonString)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T">type</typeparam>
+        /// <param name="jsonString"></param>
+        /// <param name="settings">JsonSerializerSettings</param>
+        /// <returns>objetc type</returns>
+        public static T DeserializarToJson<T>(this string jsonString, dynamic settings = null)
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(jsonString);
+                if (settings != null && settings is JsonSerializerSettings)
+                    return JsonConvert.DeserializeObject<T>(jsonString, settings);
+                else
+                    return JsonConvert.DeserializeObject<T>(jsonString);
+
             }
-            catch (System.Exception)
+            catch
             {
                 return default(T);
             }
         }
-
-        public static string SerializarToJson<T>(this T obj)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T">type</typeparam>
+        /// <param name="obj">this</param>
+        /// <param name="settings">JsonSerializerSettings</param>
+        /// <returns>string json</returns>
+        public static string SerializarToJson<T>(this T obj, dynamic settings = null)
         {
             try
             {
-                return JsonConvert.SerializeObject(obj);
+                if (settings != null && settings is JsonSerializerSettings)
+                    return JsonConvert.SerializeObject(obj, settings);
+                else
+                    return JsonConvert.SerializeObject(obj);
             }
             catch
             {
@@ -35,22 +60,93 @@ namespace Logistica.Common
             }
         }
         #endregion
-
-        public static decimal NextDecimal(this Random rnd, decimal from, decimal to)
+    }
+    /// <summary>
+    /// Extension class XmlSerialization
+    /// </summary>
+    public static class XmlSerialization
+    {
+        #region constructor
+        static XmlSerialization()
         {
-            byte fromScale = new System.Data.SqlTypes.SqlDecimal(from).Scale;
-            byte toScale = new System.Data.SqlTypes.SqlDecimal(to).Scale;
-
-            byte scale = (byte)(fromScale + toScale);
-            if (scale > 28)
-                scale = 28;
-
-            decimal r = new decimal(rnd.Next(), rnd.Next(), rnd.Next(), false, scale);
-            if (Math.Sign(from) == Math.Sign(to) || from == 0 || to == 0)
-                return decimal.Remainder(r, to - from) + from;
-
-            bool getFromNegativeRange = (double)from + rnd.NextDouble() * ((double)to - (double)from) < 0;
-            return getFromNegativeRange ? decimal.Remainder(r, -from) + from : decimal.Remainder(r, to);
+            IsbanSerializationEncoding = !string.IsNullOrEmpty(ConfigurationManager.AppSettings["IsbanSerializationEncoding"])
+                ? ConfigurationManager.AppSettings["IsbanSerializationEncoding"]
+                : string.Empty;
         }
+        #endregion
+
+        #region atributos
+        public static string IsbanSerializationEncoding { get; set; }
+        #endregion
+
+        #region metodos
+        public static T DeserializarTo<T>(this string xmlSerializado)
+        {
+            try
+            {
+                var xmlSerz = new XmlSerializer(typeof(T));
+                using (var strReader = new StringReader(xmlSerializado))
+                {
+                    var obj = xmlSerz.Deserialize(strReader);
+                    return (T)obj;
+                }
+            }
+            catch (System.Exception)
+            {
+                return default(T);
+            }
+        }
+
+        public static string SerializarToXml<T>(this T obj) where T : new()
+        {
+            try
+            {
+                var xmlWriterSettings = new XmlWriterSettings
+                {
+                    Indent = true,
+                    //CloseOutput = false,
+                    //OmitXmlDeclaration = false,
+                };
+                if (!string.IsNullOrEmpty(IsbanSerializationEncoding))
+                {
+                    xmlWriterSettings.Encoding = Encoding.GetEncoding(IsbanSerializationEncoding);
+                }
+                else
+                {
+                    xmlWriterSettings.Encoding = Encoding.UTF8;
+                }
+                string resultXml;
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var xw = XmlWriter.Create(memoryStream, xmlWriterSettings))
+                    {
+                        var s = new XmlSerializer(typeof(T));
+                        s.Serialize(xw, obj);
+                    }
+
+                    resultXml = xmlWriterSettings.Encoding.GetString(memoryStream.ToArray());
+                }
+                return resultXml;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        public static T SerializarClass<T>(this string nombreArchivo)
+        {
+            var reader = new StreamReader(nombreArchivo);
+            var xml = reader.ReadToEnd();
+            reader.Close();
+            var xmlSerz = new XmlSerializer(typeof(T));
+
+            using (var strReader = new StringReader(xml))
+            {
+                var obj = xmlSerz.Deserialize(strReader);
+                return (T)obj;
+            }
+        }
+        #endregion
     }
 }

@@ -1,18 +1,10 @@
-﻿using Logistica.Business;
-using Logistica.DataAccess;
-using Logistica.Entity;
-using Logistica.IBusiness;
+﻿using Logistica.DataAccess;
 using Logistica.IDataAccess;
 
 namespace Logistica.Configuration
 {
     using System;
-    //using Logistica.Business;
-    //using Logistica.IBusiness;
-    //using Logistica.Entity;
     using Logistica.Configuration.Interception;
-    //using Logistica.DataAccess;
-    //using Logistica.IDataAccess;
     using Logistica.UnityInject;
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.InterceptionExtension;
@@ -42,71 +34,71 @@ namespace Logistica.Configuration
         public void Init()
         {
             #region DataAccess
-            DependencyFactory.RegisterType<IUsuarioDA, UsuarioDA>(
-                new InjectionMember[]
-                {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-                }
-                );
+            //DependencyFactory.RegisterType<IUsuarioDA, UsuarioDA>(
+            //    new InjectionMember[]
+            //    {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //    }
+            //    );
 
-            #region genericos
-            DependencyFactory.RegisterType<IBaseDA<DatosPersona>, CommonDA<DatosPersona>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<Menu>, CommonDA<Menu>>(
-                new InjectionMember[]
-                {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-                }
-                );
-            DependencyFactory.RegisterType<IBaseDA<Producto>, CommonDA<Producto>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<Reserva>, CommonDA<Reserva>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<TipoProducto>, CommonDA<TipoProducto>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<TipoReserva>, CommonDA<TipoReserva>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<TipoUsuario>, CommonDA<TipoUsuario>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
-            DependencyFactory.RegisterType<IBaseDA<Usuario>, CommonDA<Usuario>>(
-               new InjectionMember[]
-               {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorDataAccess>()
-               }
-               );
+            //#region genericos
+            //DependencyFactory.RegisterType<IBaseDA<DatosPersona>, CommonDA<DatosPersona>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<Menu>, CommonDA<Menu>>(
+            //    new InjectionMember[]
+            //    {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //    }
+            //    );
+            //DependencyFactory.RegisterType<IBaseDA<Producto>, CommonDA<Producto>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<Reserva>, CommonDA<Reserva>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<TipoProducto>, CommonDA<TipoProducto>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<TipoReserva>, CommonDA<TipoReserva>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<TipoUsuario>, CommonDA<TipoUsuario>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
+            //DependencyFactory.RegisterType<IBaseDA<Usuario>, CommonDA<Usuario>>(
+            //   new InjectionMember[]
+            //   {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorDataAccess>()
+            //   }
+            //   );
             //DependencyFactory.RegisterType<IBaseDA<TemplateEvaluacionDetalle>, CommonDA<TemplateEvaluacionDetalle>>(
             //   new InjectionMember[]
             //   {
@@ -196,25 +188,25 @@ namespace Logistica.Configuration
             //        new Interceptor<VirtualMethodInterceptor>(),
             //  }
             //  );
-            #endregion
+            
             #endregion
 
             #region Business
-            DependencyFactory.RegisterType<ILoginBusiness, LoginBusiness>(
-                new InjectionMember[]
-                {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorBusiness>()
-                }
-                );
+            //DependencyFactory.RegisterType<ILoginBusiness, LoginBusiness>(
+            //    new InjectionMember[]
+            //    {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorBusiness>()
+            //    }
+            //    );
 
-            DependencyFactory.RegisterType<IUsuarioBusiness, UsuarioBusiness>(
-                new InjectionMember[]
-                {
-                    new Interceptor<VirtualMethodInterceptor>(),
-                    new InterceptionBehavior<InterceptorBusiness>()
-                }
-                );
+            //DependencyFactory.RegisterType<IUsuarioBusiness, UsuarioBusiness>(
+            //    new InjectionMember[]
+            //    {
+            //        new Interceptor<VirtualMethodInterceptor>(),
+            //        new InterceptionBehavior<InterceptorBusiness>()
+            //    }
+            //    );
             //DependencyFactory.RegisterType<ICommonBusiness, CommonBusiness>(
             //    new InjectionMember[]
             //    {

@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  Logistica                                    */
 /* DBMS name:      Microsoft SQL Server 2005                    */
-/* Created on:     23/07/2017 08:53:16 p.m.                     */
+/* Created on:     20/11/2017 12:59:15 p.m.                     */
 /*==============================================================*/
 
 
@@ -18,39 +18,52 @@ use Logistica
 go
 
 /*==============================================================*/
-/* Table: DatosPersona                                          */
+/* Table: Cliente                                               */
 /*==============================================================*/
-create table DatosPersona (
-   DatosPersonaId       numeric(10)          identity,
-   UsuarioId            numeric(10)          null,
+create table Cliente (
+   ClienteId            numeric(10)          identity,
    Mail                 nvarchar(200)        null,
-   Nombre               nvarchar(200)        null,
-   Apellido             nvarchar(200)        null,
-   Telefono             nvarchar(20)         null,
-   Pais                 nvarchar(100)        null,
-   PaisIso              nvarchar(5)          null,
-   Provincia            nvarchar(30)         null,
-   Ciudad               nvarchar(100)        null,
-   TipoDocumento        nvarchar(100)        null,
-   NumeroDocumento      nvarchar(30)         null,
-   FechaNacimiento      datetime             null,
-   Direccion            nvarchar(400)        null,
-   CodigoPostal         nvarchar(10)         null,
-   constraint PK_DATOSPERSONA primary key (DatosPersonaId)
+   RazonSocial          nvarchar(400)        null,
+   CUIT                 nvarchar(20)         null,
+   Provincia            nvarchar(100)        null,
+   Partido              nvarchar(100)        null,
+   Localidad            nvarchar(100)        null,
+   Direccion            nvarchar(800)        null,
+   Observaciones        nvarchar(4000)       null,
+   Telefono             nvarchar(40)         null,
+   Telefono2            nvarchar(40)         null,
+   Estado               nvarchar(2)          null,
+   FechaAlta            datetime             null,
+   constraint PK_CLIENTE primary key (ClienteId)
 )
 go
 
 /*==============================================================*/
-/* Table: Menu                                                  */
+/* Table: Contacto                                              */
 /*==============================================================*/
-create table Menu (
-   MenuId               numeric(10)          identity,
-   ParentId             numeric(10)          null,
-   TipoUsuarioId        numeric(10)          null,
+create table Contacto (
+   ContactoId           numeric(10)          identity,
+   ClienteId            numeric(10)          null,
    Nombre               nvarchar(200)        null,
-   Url                  nvarchar(400)        null,
-   Icon                 nvarchar(400)        null,
-   constraint PK_MENU primary key (MenuId)
+   Apellido             nvarchar(200)        null,
+   Telefono             nvarchar(200)        null,
+   Mail                 nvarchar(400)        null,
+   constraint PK_CONTACTO primary key (ContactoId)
+)
+go
+
+/*==============================================================*/
+/* Table: Equipo                                                */
+/*==============================================================*/
+create table Equipo (
+   EquipoId             numeric(10)          identity,
+   ProductoId           numeric(10)          null,
+   NumeroSerie          nvarchar(20)         null,
+   Estado               nvarchar(2)          null,
+   Ubicacion            nvarchar(400)        null,
+   FechaAlta            datetime             null,
+   FechaBaja            datetime             null,
+   constraint PK_EQUIPO primary key (EquipoId)
 )
 go
 
@@ -59,10 +72,43 @@ go
 /*==============================================================*/
 create table Producto (
    ProductoId           numeric(10)          identity,
-   TipoProductoId       numeric(10)          null,
-   TipoReservaId        numeric(10)          null,
+   ProductoDetalleId    numeric(10)          null,
    Nombre               nvarchar(400)        null,
+   Descripcion          nvarchar(4000)       null,
+   FechaAlta            datetime             null,
+   FechaBaja            datetime             null,
+   Estado               nvarchar(2)          null,
    constraint PK_PRODUCTO primary key (ProductoId)
+)
+go
+
+/*==============================================================*/
+/* Table: ProductoDetalle                                       */
+/*==============================================================*/
+create table ProductoDetalle (
+   ProductoDetalleId    numeric(10)          identity,
+   Descripcion          nvarchar(400)        null,
+   Informacion          nvarchar(4000)       null,
+   Precio               numeric(12,2)        null,
+   FechaAlta            datetime             null,
+   FechaBaja            datetime             null,
+   Estado               nvarchar(2)          null,
+   constraint PK_PRODUCTODETALLE primary key (ProductoDetalleId)
+)
+go
+
+/*==============================================================*/
+/* Table: ProductoImage                                         */
+/*==============================================================*/
+create table ProductoImage (
+   ProductoImageId      numeric(10)          identity,
+   ProductoId           numeric(10)          null,
+   ImageUrl             nvarchar(400)        null,
+   "Default"            nvarchar(2)          null,
+   FechaAlta            datetime             null,
+   FechaBaja            datetime             null,
+   Estado               nvarchar(2)          null,
+   constraint PK_PRODUCTOIMAGE primary key (ProductoImageId)
 )
 go
 
@@ -71,43 +117,29 @@ go
 /*==============================================================*/
 create table Reserva (
    ReservaId            numeric(10)          identity,
-   ProductoId           numeric(10)          null,
-   UsuarioId            numeric(10)          null,
-   Fecha                datetime             null,
-   Desde                datetime             null,
-   Hasta                datetime             null,
+   EquipoId             numeric(10)          null,
+   ProductoDetalleId    numeric(10)          null,
+   ClienteId            numeric(10)          null,
+   UsuarioConfirmacionId numeric(10)          null,
+   Provincia            nvarchar(100)        null,
+   Partido              nvarchar(100)        null,
+   Localidad            nvarchar(100)        null,
+   Direccion            nvarchar(800)        null,
+   Observaciones        nvarchar(4000)       null,
+   Estado               nvarchar(2)          null,
+   Telefono             nvarchar(40)         null,
+   Telefono2            nvarchar(40)         null,
+   FleteAsignado        nvarchar(200)        null,
+   FechaDesde           datetime             null,
+   FechaHasta           datetime             null,
+   FechaDespacho        datetime             null,
+   FechaDevolucion      datetime             null,
+   SolicitudLlamado     nvarchar(2)          null,
+   SolicitudEstado      nvarchar(2)          null,
+   TotalSinFlete        numeric(12,2)        null,
+   TotalFlete           numeric(12,2)        null,
+   Total                numeric(12,2)        null,
    constraint PK_RESERVA primary key (ReservaId)
-)
-go
-
-/*==============================================================*/
-/* Table: TipoProducto                                          */
-/*==============================================================*/
-create table TipoProducto (
-   TipoProductoId       numeric(10)          identity,
-   Nombre               nvarchar(400)        null,
-   constraint PK_TIPOPRODUCTO primary key (TipoProductoId)
-)
-go
-
-/*==============================================================*/
-/* Table: TipoReserva                                           */
-/*==============================================================*/
-create table TipoReserva (
-   TipoReservaId        numeric(10)          not null,
-   Descripcion          nvarchar(100)        null,
-   constraint PK_TIPORESERVA primary key (TipoReservaId)
-)
-go
-
-/*==============================================================*/
-/* Table: TipoUsuario                                           */
-/*==============================================================*/
-create table TipoUsuario (
-   TipoUsuarioId        numeric(10)          identity,
-   Descripcion          nvarchar(200)        null,
-   IsDefault            nvarchar(1)          null,
-   constraint PK_TIPOUSUARIO primary key (TipoUsuarioId)
 )
 go
 
@@ -116,51 +148,57 @@ go
 /*==============================================================*/
 create table Usuario (
    UsuarioId            numeric(10)          identity,
-   TipoUsuarioId        numeric(10)          null,
+   ClienteId            numeric(10)          null,
    Mail                 nvarchar(200)        null,
    Password             nvarchar(100)        null,
    UltimoLogin          datetime             null default getdate(),
+   Estado               nvarchar(2)          null,
    constraint PK_USUARIO primary key (UsuarioId)
 )
 go
 
-alter table DatosPersona
-   add constraint FK_DatosPersona_Usuario foreign key (UsuarioId)
-      references Usuario (UsuarioId)
+alter table Contacto
+   add constraint FK_Cliente_Contacto foreign key (ClienteId)
+      references Cliente (ClienteId)
 go
 
-alter table Menu
-   add constraint FK_Menu_MenuParent foreign key (ParentId)
-      references Menu (MenuId)
-go
-
-alter table Menu
-   add constraint FK_TipoUsuario_Menu foreign key (TipoUsuarioId)
-      references TipoUsuario (TipoUsuarioId)
+alter table Equipo
+   add constraint FK_Producto_Equipo foreign key (ProductoId)
+      references Producto (ProductoId)
 go
 
 alter table Producto
-   add constraint FK_Producto_TipoReserva foreign key (TipoReservaId)
-      references TipoReserva (TipoReservaId)
+   add constraint FK_Producto_ProductoDetalle foreign key (ProductoDetalleId)
+      references ProductoDetalle (ProductoDetalleId)
 go
 
-alter table Producto
-   add constraint FK_TipoProducto_Producto foreign key (TipoProductoId)
-      references TipoProducto (TipoProductoId)
-go
-
-alter table Reserva
-   add constraint FK_Reserva_Producto foreign key (ProductoId)
+alter table ProductoImage
+   add constraint FK_Producto_ProductoImagen foreign key (ProductoId)
       references Producto (ProductoId)
 go
 
 alter table Reserva
-   add constraint FK_Reserva_Usuario foreign key (UsuarioId)
+   add constraint FK_Cliente_Reserva foreign key (ClienteId)
+      references Cliente (ClienteId)
+go
+
+alter table Reserva
+   add constraint FK_Equipo_Reserva foreign key (EquipoId)
+      references Equipo (EquipoId)
+go
+
+alter table Reserva
+   add constraint FK_ProductoDetalle_Reserva foreign key (ProductoDetalleId)
+      references ProductoDetalle (ProductoDetalleId)
+go
+
+alter table Reserva
+   add constraint FK_Reserva_Usuario foreign key (UsuarioConfirmacionId)
       references Usuario (UsuarioId)
 go
 
 alter table Usuario
-   add constraint FK_Usuario_TipoUsuario foreign key (TipoUsuarioId)
-      references TipoUsuario (TipoUsuarioId)
+   add constraint FK_Usuario_Cliente foreign key (ClienteId)
+      references Cliente (ClienteId)
 go
 

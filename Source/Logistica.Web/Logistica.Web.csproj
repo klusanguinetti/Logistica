@@ -150,23 +150,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\DatosPersonalesApiController.cs" />
-    <Compile Include="Controllers\AdministracionApiController.cs" />
-    <Compile Include="Controllers\DatosPersonalesController.cs" />
-    <Compile Include="Controllers\AdministracionController.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\CommonController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RegistracionApiController.cs" />
-    <Compile Include="Controllers\LoginApiController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\AuthenticationFormsClient.cs" />
-    <Compile Include="Security\SecurityView.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -238,22 +226,8 @@
     <Content Include="Scripts\angular-moment-picker\moment-with-locales.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\app\appPoderDeCompra.js" />
     <Content Include="Scripts\app\common\common.js" />
-    <Content Include="Scripts\app\controllers\datosPersonalesController.js" />
-    <Content Include="Scripts\app\controllers\administracionController.js" />
-    <Content Include="Scripts\app\controllers\registracionController.js" />
-    <Content Include="Scripts\app\controllers\loginController.js" />
-    <Content Include="Scripts\app\controllers\publicController.js" />
-    <Content Include="Scripts\app\controllers\mainController.js" />
     <Content Include="Scripts\app\directives\modalPopUp.js" />
-    <Content Include="Scripts\app\services\datosPersonalesService.js" />
-    <Content Include="Scripts\app\services\commonService.js" />
-    <Content Include="Scripts\app\services\administracionService.js" />
-    <Content Include="Scripts\app\services\consultasService.js" />
-    <Content Include="Scripts\app\services\registracionService.js" />
-    <Content Include="Scripts\app\services\loginService.js" />
-    <Content Include="Scripts\app\services\mainService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\cartogothicstd-book-webfont.woff" />
@@ -292,23 +266,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Container.cshtml" />
-    <Content Include="Views\Administracion\ActivacionDesactivacion.cshtml" />
-    <Content Include="Views\Administracion\AdministracionAutorizaciones.cshtml" />
-    <Content Include="Views\Administracion\AdministracionBaja.cshtml" />
-    <Content Include="Views\Administracion\AdministracionReprocesoCierre.cshtml" />
-    <Content Include="Views\Administracion\AdministracionSuscripcion.cshtml" />
-    <Content Include="Views\Administracion\AdministracionAjustesManuales.cshtml" />
-    <Content Include="Views\Administracion\AdministracionReprocesoAcreditacion.cshtml" />
-    <Content Include="Views\Home\LogOff.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Administracion\AdministracionAlta.cshtml" />
-    <Content Include="Views\Login\Registracion.cshtml" />
-    <Content Include="Views\DatosPersonales\Modificacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Scripts\app\controllers\" />
+    <Folder Include="Scripts\app\services\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
